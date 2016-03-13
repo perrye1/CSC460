@@ -6,18 +6,18 @@ public class Server {
 	private static int port = 4030;
 
 	public static void main(String[] args) {
-		int i = 0;
+		int i = 0; //autoID for the clients
 
 		try {
 			ServerSocket listener = new ServerSocket(port);
 			Socket client;
 
 			while (true) {
-				client = listener.accept();
-				TicTacToeThread play = new TicTacToeThread(client, i);
-				Thread t = new Thread(play);
-				t.start();
-				i++;
+				client = listener.accept(); //accept client connection
+				TicTacToeThread play = new TicTacToeThread(client, i); //pass client and autoID to new thread
+				Thread t = new Thread(play); //create thread object
+				t.start(); //start the thread
+				i++; //increment the autoID
 			}
 			
 		} catch (IOException ioe) {
